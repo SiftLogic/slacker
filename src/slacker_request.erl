@@ -16,6 +16,7 @@ send(Endpoint, Params, Options) ->
 
 send(post, Endpoint, Headers, Params, Options) ->
     URL = restc:construct_url(?API_URL, Endpoint, []),
+    io:format("restc:request(post, json, ~p, [], ~p, ~p, ~p)~n", [URL, Headers, Params, Options]),
     restc:request(post, json, URL, [], Headers, Params, Options);
 send(get, Endpoint, _Headers, Params, Options) ->
     URL = restc:construct_url(?API_URL, Endpoint, lists:append(Params, Options)),
