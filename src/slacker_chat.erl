@@ -43,7 +43,7 @@ post_message(Token, Channel, Message, Options) ->
 -spec post_message_bearer(Token :: string(), Channel :: string(), Message :: string() | map(), Options :: list()) -> http_response().
 post_message_bearer(Token, Channel, Message, Options) when is_map(Message) ->
     Headers = [{"authorization", "bearer " ++ Token}],
-    slacker_request:send(post, "chat.postMessage", Headers, #{"channel" => Channel, "text" => Message}, Options);
+    slacker_request:send(post, "chat.postMessage", Headers, Message#{"channel" => Channel}, Options);
 post_message_bearer(Token, Channel, Message, Options) ->
     Headers = [{"authorization", "bearer " ++ Token}],
     slacker_request:send(post, "chat.postMessage", Headers, [{"channel", Channel},{"text", Message}], Options).
