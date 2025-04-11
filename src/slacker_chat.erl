@@ -42,7 +42,7 @@ post_message(Token, Channel, Message, Options) ->
 %%
 -spec post_message_bearer(Token :: string(), Channel :: string(), Message :: string(), Options :: list()) -> http_response().
 post_message_bearer(Token, Channel, Message, Options) ->
-    Headers = [{"authorization", "bearer " ++ Token}],
+    Headers = [{"authorization", "Bearer " ++ Token}],
     slacker_request:send(post, "chat.postMessage", Headers, [{"channel", Channel},{"text", Message}] ++ Options, Options).
 
 %% @doc Updates a message in a channel.
