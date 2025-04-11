@@ -40,10 +40,7 @@ post_message(Token, Channel, Message, Options) ->
 %% icon_url: URL to an image to use as the icon for this message
 %% icon_emoji: emoji to use as the icon for this message
 %%
--spec post_message_bearer(Token :: string(), Channel :: string(), Message :: string() | map(), Options :: list()) -> http_response().
-post_message_bearer(Token, Channel, Message, Options) when is_map(Message) ->
-    Headers = [{"authorization", "bearer " ++ Token}],
-    slacker_request:send(post, "chat.postMessage", Headers, Message#{"channel" => Channel}, Options);
+-spec post_message_bearer(Token :: string(), Channel :: string(), Message :: string(), Options :: list()) -> http_response().
 post_message_bearer(Token, Channel, Message, Options) ->
     Headers = [{"authorization", "bearer " ++ Token}],
     slacker_request:send(post, "chat.postMessage", Headers, [{"channel", Channel},{"text", Message}], Options).
